@@ -4,11 +4,19 @@ class Person:
         self.age = age
         self.sex = sex
 
-    def get_user_info(self):
-        self.name = input("Enter name:")
-        self.age = input("Enter age:")
-        self.sex = input("Enter sex:")
+    def get_person(self):
+        self.name = input("name: ")
+        self.age = input("age: ")
+        self.sex = input("sex: ")
+        x = "a"
+        return list.append([self.name, self.age, self.sex])
 
-    def write_user_info(self):
-        self.append([self.name, self.age,self.sex])
+    def print_person(self):
+        print(list)
 
+
+list = []
+
+for i in range(2):
+    Person.get_person(Person)
+    Person.print_person(Person)
