@@ -10,12 +10,13 @@ class Solution:
 
         open("lista de nume.txt", "a")
         file= open("lista de nume.txt", "r")
+        print("ok")
 
         names_string = file.read()
         people_lst = names_string.split("\n")
         user_ctrl = 0
 
-        while user_ctrl != 5:
+        while user_ctrl  != 5:
 
             print("\n\nPlease press number to chose one of the following options:\n1. ➕ Add Personal Details\n2. ❌ Delete Name\n3. 📄 List Names\n4. 🔎 Search Name\n5. 🔴 Exit Program")
 
