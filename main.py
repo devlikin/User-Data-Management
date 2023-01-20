@@ -1,72 +1,101 @@
-import numpy as np
+list = []
 
 
 class Person:
-    list = []
 
-    def __init__(self, name, age, sex):
+    def __init__(self, name: str, age: int, sex: str):
         self.name = name
         self.age = age
         self.sex = sex
 
-    @classmethod
-    def load_file(cls):
-        try:
-            cls.list = list(np.load("people.npy"))
-            print(cls.list)
-        except:
-            cls.list = []
-            print("No file found, creating new list.")
 
-    @classmethod
-    def save_file(cls):
-        np.save("people.npy", cls.list)
+def load_file():
+    file = open("people.txt", "r")
+    string = file.read()
 
-    @classmethod
-    def controller(cls):
-        user_controller = "0"
+    print(string)
+    string_list = ""
+    string_list = string.split("\n")
+    print(string_list)
 
-        while user_controller != "5":
-            user_controller = input(
-                "\n\nPlease press number to chose one of the following options:\n1. ➕ Add person\n2. ❌ Delete person\n3. 📄 List person\n4. 🔎 Search for person\n5. 🔴 Save and exit Program\n")
+    person_string = ""
+    entry_list = []
 
-            if user_controller == "1": cls.get_person()
-            if user_controller == "2": cls.delete_person()
-            if user_controller == "3": cls.print_person()
-            if user_controller == "4": cls.search_person()
+    for person_string in string_list:
+        entry_list = person_string.split(",")
 
-        print("Goodbye!")
+        name = entry_list[0]
+        age = int(entry_list[1])
+        sex = entry_list[2]
 
-    @classmethod
-    def get_person(cls):
-        name = input("Enter name: ")
-        age = input("Enter age: ")
-        sex = input("Enter sex: ")
-        cls.list.append([name, age, sex])
+        print("nas", name, age, sex)
 
-    @classmethod
-    def print_person(cls):
-        i = 1
-        for sublist in cls.list:
-            string = " ".join(sublist)
-            print(i, string)
-            i += 1
+        list.append(Person(name, age, sex))
 
-    @classmethod
-    def delete_person(cls):
-        cls.print_person()
-        del_index = input("Which index number would you like to delete?:")
-        cls.list.pop(int(del_index) - 1)
-
-    @classmethod
-    def search_person(cls):
-        query = input("Who are you looking for:")
-        for array in cls.list:
-            for entry in array:
-                if query in entry:
-                    print("Found:", array)
+    print("list", list)
 
 
-Person.load_file()
-Person.controller()
-Person.save_file()
+def save_file():
+    string = ""
+
+    for Person in list:
+        string = string + Person.name + ","
+        string = string + str(Person.age) + ","
+        string = string + Person.sex + "\n"
+    string = string[:-1]
+
+    file = open("people.txt", "w")
+    file.write(string)
+
+
+def controller():
+    user_controller = "0"
+
+    while user_controller != "5":
+        user_controller = input(
+            "\n\nPlease press number to chose one of the following options:\n1. ➕ Add person\n2. ❌ Delete person\n3. 📄 List person\n4. 🔎 Search for person\n5. 🔴 Save and exit Program\n")
+
+        if user_controller == "1": get_person()
+        if user_controller == "2": delete_person()
+        if user_controller == "3": print_person()
+        if user_controller == "4": search_person()
+
+    print("Goodbye!")
+
+
+def get_person():
+    name = input("Enter name: ")
+    try:
+        age = int(input("Enter age: "))
+    except:
+        print("error! age probably not digits")
+
+    sex = input("Enter sex: ")
+    list.append(Person(name, age, sex))
+
+
+def print_person():
+    for Person in list:
+        print(Person.name, Person.age, Person.sex)
+
+
+def delete_person():
+    index = 1
+    for Person in list:
+        print(index, Person.name, Person.age, Person.sex)
+        index += 1
+
+    del_index = input("Which index number would you like to delete?:")
+    list.pop(int(del_index) - 1)
+
+
+def search_person():
+    query = input("Who are you looking for:")
+    for Person in list:
+        if query in Person.name:
+            print(Person.name, "found!")
+
+
+load_file()
+controller()
+save_file()
