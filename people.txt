@@ -1,2 +1,3 @@
-Sam,12,m
-Bob,16,m
+Sam,12,female
+Bob,13,male
+Mike,11,male
