@@ -90,8 +90,7 @@ def print_person():
         for person in list:
             print(person.name, person.age, person.sex)
 
-
-input("press enter to continue...")
+    input("press enter to continue...")
 
 
 def delete_person():
