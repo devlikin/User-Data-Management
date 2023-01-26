@@ -29,6 +29,7 @@ def load_file():
 
         print("list", list)
     except:
+        print("creating file")
         open("companies.txt", "w")
 
 

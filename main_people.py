@@ -31,6 +31,7 @@ def load_file():
         print("list", list)
 
     except:
+        print("creating file")
         open("people.txt", "w")
 
 
