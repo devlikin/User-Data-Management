@@ -12,6 +12,7 @@ def main():
 
         controller()
         main()
+    main()
 
 
 main()
