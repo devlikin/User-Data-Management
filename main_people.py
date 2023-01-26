@@ -14,7 +14,6 @@ def load_file():
     print(string_list)
 
     person_string = ""
-    entry_list = []
 
     for person_string in string_list:
         entry_list = person_string.split(",")
