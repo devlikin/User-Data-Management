@@ -4,18 +4,19 @@ list = []
 
 
 def load_file():
-    print("loading...")
-    file = open("people.txt", "r")
-    string = file.read()
-
-    print(string)
-    string_list = ""
-    string_list = string.split("\n")
-    print(string_list)
-
-    person_string = ""
-    entry_list = []
     try:
+        print("loading...")
+        file = open("people.txt", "r")
+        string = file.read()
+
+        print(string)
+        string_list = ""
+        string_list = string.split("\n")
+        print(string_list)
+
+        person_string = ""
+        entry_list = []
+
         for person_string in string_list:
             entry_list = person_string.split(",")
 
@@ -30,8 +31,7 @@ def load_file():
         print("list", list)
 
     except:
-        list = []
-    print("loading done!")
+        open("people.txt", "w")
 
 
 def save_file():
@@ -48,6 +48,8 @@ def save_file():
 
 
 def controller():
+    load_file()
+
     user_controller = "0"
 
     while user_controller != "6":
@@ -60,6 +62,7 @@ def controller():
         if user_controller == "4": search_person()
         if user_controller == "5": update_person()
 
+    save_file()
     print("Goodbye!")
 
 
@@ -182,8 +185,3 @@ def update_person():
             list[person_index].sex = sex
 
     save_file()
-
-
-load_file()
-controller()
-save_file()

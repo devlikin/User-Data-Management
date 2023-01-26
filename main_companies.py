@@ -4,19 +4,19 @@ list = []
 
 
 def load_file():
-    print("loading...")
-    file = open("companies.txt", "r")
-    string = file.read()
-
-    print(string)
-    string_list = ""
-    string_list = string.split("\n")
-    print(string_list)
-
-    company_string = ""
-    entry_list = []
-
     try:
+        print("loading...")
+        file = open("companies.txt", "r")
+        string = file.read()
+
+        print(string)
+        string_list = ""
+        string_list = string.split("\n")
+        print(string_list)
+
+        company_string = ""
+        entry_list = []
+
         for company_string in string_list:
             entry_list = company_string.split(",")
 
@@ -28,10 +28,8 @@ def load_file():
             list.append(company(name, slogan))
 
         print("list", list)
-
     except:
-        list = []
-    print("loading done!")
+        open("companies.txt", "w")
 
 
 def save_file():
@@ -47,6 +45,8 @@ def save_file():
 
 
 def controller():
+    load_file()
+
     user_controller = "0"
 
     while user_controller != "6":
@@ -59,6 +59,7 @@ def controller():
         if user_controller == "4": search_company()
         if user_controller == "5": update_company()
 
+    save_file()
     print("Goodbye!")
 
 
@@ -144,8 +145,3 @@ def update_company():
         list[company_index].slogan = slogan
 
     save_file()
-
-
-load_file()
-controller()
-save_file()
