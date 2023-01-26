@@ -41,7 +41,7 @@ def save_file():
     file.write(string)
 
 
-def controller():
+def companies_controller():
     load_file()
 
     user_controller = "0"
@@ -65,7 +65,7 @@ def get_company():
     if len(name) < 3:
         print("name too short!")
         input("press enter to continue")
-        controller()
+        companies_controller()
 
     slogan = input("Enter slogan: ")
     list.append(company(name, slogan))
@@ -96,7 +96,7 @@ def delete_company():
     else:
         print("invalid index!")
         input("press enter to continue")
-        controller()
+        companies_controller()
 
 
 def search_company():
@@ -133,7 +133,7 @@ def update_company():
         if len(name) < 3:
             print("name too short!")
             input("press enter to continue")
-            controller()
+            companies_controller()
         else:
             list[company_index].name = name
 

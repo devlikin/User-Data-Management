@@ -1,17 +1,18 @@
+from main_companies import companies_controller
+from main_people import people_controller
+
+
 def main():
     main_controller = input("Would you like to manage\n1. 🏢 companies or \n2. 👨 people?\nInsert number: ")
 
     if main_controller == "1":
-        from main_companies import controller
-
-        controller()
+        companies_controller()
         main()
 
     if main_controller == "2":
-        from main_people import controller
-
-        controller()
+        people_controller()
         main()
+
     main()
 
 

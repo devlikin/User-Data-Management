@@ -46,7 +46,7 @@ def save_file():
     file.write(string)
 
 
-def controller():
+def people_controller():
     load_file()
 
     user_controller = "0"
@@ -70,21 +70,21 @@ def get_person():
     if len(name) < 3:
         print("name too short!")
         input("press enter to continue")
-        controller()
+        people_controller()
 
     age = int(input("Enter age: "))
 
     if (age < 0) or (age > 130):
         print("invalid age!")
         input("press enter to continue")
-        controller()
+        people_controller()
 
     sex = input("Enter sex: ")
 
     if (sex != "male") and (sex != "female"):
         print("invalid sex!")
         input("press enter to continue")
-        controller()
+        people_controller()
 
     list.append(person(name, age, sex))
     save_file()
@@ -114,7 +114,7 @@ def delete_person():
     else:
         print("invalid index!")
         input("press enter to continue")
-        controller()
+        people_controller()
 
 
 def search_person():
@@ -157,7 +157,7 @@ def update_person():
         if len(name) < 3:
             print("name too short!")
             input("press enter to continue")
-            controller()
+            people_controller()
         else:
             list[person_index].name = name
 
@@ -168,7 +168,7 @@ def update_person():
         if (age < 0) or (age > 130):
             print("invalid age!")
             input("press enter to continue")
-            controller()
+            people_controller()
         else:
             list[person_index].age = age
 
@@ -179,11 +179,8 @@ def update_person():
         if (sex != "male") and (sex != "female"):
             print("invalid sex!")
             input("press enter to continue")
-            controller()
+            people_controller()
         else:
             list[person_index].sex = sex
 
     save_file()
-
-
-controller()
