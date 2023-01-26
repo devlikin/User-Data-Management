@@ -4,33 +4,29 @@ list = []
 
 
 def load_file():
-    try:
-        print("loading...")
-        file = open("companies.txt", "r")
-        string = file.read()
+    print("loading...")
+    file = open("companies.txt", "r")
+    string = file.read()
 
-        print(string)
-        string_list = ""
-        string_list = string.split("\n")
-        print(string_list)
+    print(string)
+    string_list = ""
+    string_list = string.split("\n")
+    print(string_list)
 
-        company_string = ""
-        entry_list = []
+    company_string = ""
+    entry_list = []
 
-        for company_string in string_list:
-            entry_list = company_string.split(",")
+    for company_string in string_list:
+        entry_list = company_string.split(",")
 
-            name = entry_list[0]
-            slogan = entry_list[1]
+        name = entry_list[0]
+        slogan = entry_list[1]
 
-            print("nas", name, slogan)
+        print("nas", name, slogan)
 
-            list.append(company(name, slogan))
+        list.append(company(name, slogan))
 
-        print("list", list)
-    except:
-        print("creating file")
-        open("companies.txt", "w")
+    print("list", list)
 
 
 def save_file():

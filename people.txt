@@ -1,4 +1,0 @@
-Bob,12,male
-Bob,12,male
-Bob,12,male
-Sam,11,female
