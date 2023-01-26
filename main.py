@@ -11,11 +11,9 @@ def main():
 
         if main_controller == "1":
             companies_controller()
-            main()
 
         if main_controller == "2":
             people_controller()
-            main()
 
 
 main()
