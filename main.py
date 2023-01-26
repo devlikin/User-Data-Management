@@ -5,7 +5,7 @@ from main_people import people_controller
 def main():
     main_controller = "0"
 
-    while main_controller != 3:
+    while main_controller != "3":
 
         main_controller = input("Would you like to manage\n1. 🏢 companies or \n2. 👨 people?\n3.Exit \nInsert number: ")
 
