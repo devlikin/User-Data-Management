@@ -3,17 +3,19 @@ from main_people import people_controller
 
 
 def main():
-    main_controller = input("Would you like to manage\n1. 🏢 companies or \n2. 👨 people?\nInsert number: ")
+    main_controller = "0"
 
-    if main_controller == "1":
-        companies_controller()
-        main()
+    while main_controller != 3:
 
-    if main_controller == "2":
-        people_controller()
-        main()
+        main_controller = input("Would you like to manage\n1. 🏢 companies or \n2. 👨 people?\n3.Exit \nInsert number: ")
 
-    main()
+        if main_controller == "1":
+            companies_controller()
+            main()
+
+        if main_controller == "2":
+            people_controller()
+            main()
 
 
 main()
