@@ -1,4 +1,4 @@
-class company:
+class Company:
 
     def __init__(self, name: str, slogan: str):
         self.name = name

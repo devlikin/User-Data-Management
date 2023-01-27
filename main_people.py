@@ -1,9 +1,7 @@
-from person import person
-
-list = []
+from person import Person
 
 
-def load_file():
+def load_file(list):
     print("loading...")
     file = open("people.txt", "r")
     string = file.read()
@@ -14,6 +12,7 @@ def load_file():
     print(string_list)
 
     person_string = ""
+    list = []
 
     for person_string in string_list:
         entry_list = person_string.split(",")
@@ -24,15 +23,16 @@ def load_file():
 
         print("nas", name, age, sex)
 
-        list.append(person(name, age, sex))
+        list.append(Person(name, age, sex))
 
     print("list", list)
 
     print("creating file")
     open("people.txt", "w")
+    return list
 
 
-def save_file():
+def save_file(list):
     string = ""
 
     for person in list:
@@ -43,10 +43,12 @@ def save_file():
 
     file = open("people.txt", "w")
     file.write(string)
+    return list
 
 
 def people_controller():
-    load_file()
+    list = []
+    list = load_file(list)
 
     user_controller = "0"
 
@@ -54,42 +56,43 @@ def people_controller():
         user_controller = input(
             "\n\nPlease press number to chose one of the following options:\n1. ➕ Add person\n2. ❌ Delete person\n3. 📄 List person\n4. 🔎 Search for person\n5. 👩➡👨‍ Update person\n6. 🔴 Save and exit Program\n")
 
-        if user_controller == "1": get_person()
-        if user_controller == "2": delete_person()
-        if user_controller == "3": print_person()
-        if user_controller == "4": search_person()
-        if user_controller == "5": update_person()
+        if user_controller == "1": get_person(list)
+        if user_controller == "2": delete_person(list)
+        if user_controller == "3": print_person(list)
+        if user_controller == "4": search_person(list)
+        if user_controller == "5": update_person(list)
 
-    save_file()
+    save_file(list)
     print("Goodbye!")
 
 
-def get_person():
+def get_person(list):
     name = input("Enter name: ")
     if len(name) < 3:
         print("name too short!")
         input("press enter to continue")
-        people_controller()
+        return
 
     age = int(input("Enter age: "))
 
     if (age < 0) or (age > 130):
         print("invalid age!")
         input("press enter to continue")
-        people_controller()
+        return
 
     sex = input("Enter sex: ")
 
     if (sex != "male") and (sex != "female"):
         print("invalid sex!")
         input("press enter to continue")
-        people_controller()
+        return
 
-    list.append(person(name, age, sex))
-    save_file()
+    list.append(Person(name, age, sex))
+    save_file(list)
+    return list
 
 
-def print_person():
+def print_person(list):
     if len(list) == 0:
         print("No entry found. List is empty!")
     else:
@@ -97,9 +100,10 @@ def print_person():
             print(person.name, person.age, person.sex)
 
     input("press enter to continue...")
+    return (list)
 
 
-def delete_person():
+def delete_person(list):
     index = 1
     for person in list:
         print(index, person.name, person.age, person.sex)
@@ -109,14 +113,15 @@ def delete_person():
 
     if (del_index <= len(list)) and (del_index > 0):
         list.pop(int(del_index) - 1)
-        save_file()
+        save_file(list)
     else:
         print("invalid index!")
         input("press enter to continue")
-        people_controller()
+        return
+    return list
 
 
-def search_person():
+def search_person(list):
     user_controller = "0"
     user_controller = input("Search for person by:\n1.Name\n2.Age\n3.Sex\nPlease press the corresponding number: ")
 
@@ -137,9 +142,10 @@ def search_person():
         for person in list:
             if query == person.sex:
                 print(person.name, person.sex, "found!")
+    return list
 
 
-def update_person():
+def update_person(list):
     index = 1
     for person in list:
         print(index, person.name, person.age, person.sex)
@@ -156,7 +162,7 @@ def update_person():
         if len(name) < 3:
             print("name too short!")
             input("press enter to continue")
-            people_controller()
+            return
         else:
             list[person_index].name = name
 
@@ -182,4 +188,4 @@ def update_person():
         else:
             list[person_index].sex = sex
 
-    save_file()
+    return list
